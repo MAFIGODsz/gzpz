@@ -1,0 +1,418 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-condensed: var(--font-barlow-condensed), ui-sans-serif, system-ui, sans-serif;
+
+  --color-crimson: #8c1a1a;
+  --color-crimson-deep: #5e0f0f;
+  --color-crimson-light: #b52929;
+  --color-charcoal: #1c1917;
+  --color-charcoal-mid: #292523;
+  --color-charcoal-light: #3d3835;
+  --color-warm-white: #f5f0e8;
+  --color-warm-off: #ede7d9;
+  --color-warm-muted: #c9bca8;
+  --color-amber: #b07d3c;
+  --color-amber-light: #d4a257;
+  --color-text-primary: #f0eae0;
+  --color-text-secondary: #b0a898;
+  --color-border-dark: rgba(255, 255, 255, 0.07);
+  --color-border-light: rgba(0, 0, 0, 0.08);
+
+  --duration-400: 400ms;
+
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-partners-marquee: partnersMarquee 48s linear infinite;
+  --animate-pulse-slow: pulse-slow 2s infinite;
+  --animate-bar-grow: barGrow 1.5s ease forwards;
+  --animate-scroll-pulse: scrollPulse 2s infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes partnersMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-25%); }
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes barGrow {
+    from {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes scrollPulse {
+    0% {
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    50% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes heroReveal {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes heroLogoReveal {
+    from {
+      opacity: 0;
+      transform: scale(0.82) translateY(18px);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes ringPulse {
+    0%, 100% { opacity: 0.12; transform: scale(1); }
+    50% { opacity: 0.22; transform: scale(1.04); }
+  }
+
+  @keyframes navItemReveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes heroRingRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes heroCardIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes heroFloatLoop {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-7px); }
+  }
+
+  @keyframes shimmerSweep {
+    from { transform: translateX(-100%) skewX(-12deg); }
+    to   { transform: translateX(250%) skewX(-12deg); }
+  }
+}
+
+:root {
+  --section-pad: clamp(80px, 10vw, 140px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-charcoal);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ─── SELECTION ─── */
+::selection {
+  background: rgba(140, 26, 26, 0.35);
+  color: var(--color-warm-white);
+}
+
+/* ─── PLACEHOLDER ─── */
+::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-charcoal);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-crimson);
+  border-radius: 2px;
+}
+
+/* ─── FORM FOCUS ─── */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: rgba(140, 26, 26, 0.55) !important;
+  box-shadow: 0 0 0 2px rgba(140, 26, 26, 0.12);
+}
+
+/* ─── SELECT CUSTOM ARROW ─── */
+select:not([multiple]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='rgba%28176%2C168%2C152%2C0.55%29' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px !important;
+}
+
+/* ─── FADE-IN REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── PRINT ─── */
+@media print {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ─── HERO ANIMATIONS ─── */
+.hero-eyebrow {
+  opacity: 0;
+  animation: heroReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
+}
+.hero-logo-wrap {
+  opacity: 0;
+  animation:
+    heroLogoReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.55s,
+    logoFloat 5s ease-in-out infinite 2.8s;
+}
+.hero-tagline {
+  opacity: 0;
+  animation: heroReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.1s;
+}
+.hero-divider {
+  opacity: 0;
+  animation: heroReveal 0.6s ease forwards 1.25s;
+}
+.hero-nav {
+  opacity: 0;
+  animation: heroReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.4s;
+}
+.hero-scroll {
+  opacity: 0;
+  animation: heroReveal 0.6s ease forwards 2s;
+}
+.hero-ring {
+  animation: ringPulse 4s ease-in-out infinite;
+}
+
+/* SVG decorative rings */
+.svg-ring-1 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: heroRingRotate 90s linear infinite;
+}
+.svg-ring-2 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: heroRingRotate 60s linear infinite reverse;
+}
+.svg-ring-3 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: heroRingRotate 40s linear infinite;
+}
+
+/* Floating ambient cards */
+.hero-card-2002 {
+  opacity: 0;
+  animation: heroCardIn 0.9s cubic-bezier(0.22,1,0.36,1) forwards 2.2s,
+             heroFloatLoop 7s ease-in-out infinite 3.4s;
+}
+.hero-card-22 {
+  opacity: 0;
+  animation: heroCardIn 0.9s cubic-bezier(0.22,1,0.36,1) forwards 2.6s,
+             heroFloatLoop 8.5s ease-in-out infinite 3.8s;
+}
+.hero-card-b2b {
+  opacity: 0;
+  animation: heroCardIn 0.9s cubic-bezier(0.22,1,0.36,1) forwards 3s,
+             heroFloatLoop 6s ease-in-out infinite 4.2s;
+}
+.hero-card-loc {
+  opacity: 0;
+  animation: heroCardIn 0.9s cubic-bezier(0.22,1,0.36,1) forwards 2.8s,
+             heroFloatLoop 9.5s ease-in-out infinite 4s;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-partners-marquee {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero-logo-wrap, .hero-tagline,
+  .hero-divider, .hero-nav, .hero-scroll {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-card-2002, .hero-card-22, .hero-card-b2b, .hero-card-loc {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .svg-ring-1, .svg-ring-2, .svg-ring-3 {
+    animation: none !important;
+  }
+  .hero-ring {
+    animation: none !important;
+  }
+}
+
+/* Nav item stagger (nth-child) */
+.hero-nav-item:nth-child(1) { animation-delay: 1.4s; }
+.hero-nav-item:nth-child(2) { animation-delay: 1.5s; }
+.hero-nav-item:nth-child(3) { animation-delay: 1.6s; }
+.hero-nav-item:nth-child(4) { animation-delay: 1.7s; }
+.hero-nav-item:nth-child(5) { animation-delay: 1.8s; }
+
+/* ─── TYPOGRAPHY UTILITIES ─── */
+.display-font {
+  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+}
+
+.condensed-font {
+  font-family: var(--font-barlow-condensed), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── SECTION LABEL ─── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-crimson-light);
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: var(--font-barlow-condensed), ui-sans-serif, system-ui, sans-serif;
+}
+.section-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--color-crimson-light);
+  flex-shrink: 0;
+}
+
+/* ─── PRODUCT CARDS ─── */
+.prod-card {
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-border-dark);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 900ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.prod-card:hover {
+  border-color: rgba(140, 26, 26, 0.45);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.sabor-card {
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 300ms ease;
+  will-change: transform;
+}
+
+.sabor-card:hover {
+  border-color: rgba(140, 26, 26, 0.35) !important;
+  transform: translateY(-3px);
+}
+
+
+@media (max-width: 720px) {
+  :root {
+    --section-pad: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-pad: 56px;
+  }
+}
+
+/* ─── PARTNERS MARQUEE (plain CSS — not via Tailwind utilities) ─── */
+@keyframes partnersScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+
+.partners-track {
+  display: flex;
+  width: max-content;
+  animation: partnersScroll 48s linear infinite;
+}
+
+.partners-marquee:hover .partners-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-track {
+    animation: none;
+  }
+}
