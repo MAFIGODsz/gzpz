@@ -147,9 +147,22 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="py-5 border-t border-border-dark flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-2">
-          <p className="text-xs text-text-secondary font-light m-0">
-            © 2026 GELZA Pizzas. Todos os direitos reservados.
-          </p>
+          <div className="flex flex-col gap-1.5 w-full sm:w-auto">
+            <p className="text-xs text-text-secondary font-light m-0">
+              © 2026 GELZA Pizzas. Todos os direitos reservados.
+            </p>
+            <p className="text-[10px] text-[rgba(255,255,255,0.35)] font-light m-0">
+              Desenvolvido por{" "}
+              <a
+                href="https://instagram.com/thepixeloo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[rgba(255,255,255,0.5)] hover:text-crimson-light transition-colors duration-200 no-underline"
+              >
+                Pixeloo
+              </a>
+            </p>
+          </div>
           <span className="display-font text-xs italic text-text-secondary m-0">
             Tradição desde 2002 · Indústria desde 2024
           </span>
